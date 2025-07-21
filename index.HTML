@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بورتفوليو المهندس مصطفى منصور</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* خلفية متحركة للصفحة */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(102, 126, 234, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundMove 20s ease-in-out infinite;
+        }
+        
+        @keyframes backgroundMove {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-20px) translateY(-10px); }
+            50% { transform: translateX(20px) translateY(10px); }
+            75% { transform: translateX(-10px) translateY(20px); }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            animation: sparkle 6s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .card-hover:hover::before {
+            left: 100%;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.15),
+                0 0 0 1px rgba(255,255,255,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(255,255,255,0.3), transparent);
+            animation: iconRotate 3s linear infinite;
+        }
+        
+        @keyframes iconRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(1deg); }
+            50% { transform: translateY(-20px) rotate(0deg); }
+            75% { transform: translateY(-15px) rotate(-1deg); }
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+        
+        .animate-bounce-slow {
+            animation: bounce-slow 2s ease-in-out infinite;
+        }
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
+        }
+        
+        .animate-rotate {
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .animate-scale {
+            animation: scale 4s ease-in-out infinite;
+        }
+        @keyframes scale {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.02) rotate(0.5deg); }
+            50% { transform: scale(1.05) rotate(0deg); }
+            75% { transform: scale(1.02) rotate(-0.5deg); }
+        }
+        
+        .animate-glow {
+            animation: glow 2s ease-in-out infinite alternate;
+            position: relative;
+        }
+        @keyframes glow {
+            from { 
+                box-shadow: 
+                    0 0 20px rgba(102, 126, 234, 0.5),
+                    0 0 40px rgba(102, 126, 234, 0.3),
+                    inset 0 0 20px rgba(255,255,255,0.1);
+            }
+            to { 
+                box-shadow: 
+                    0 0 30px rgba(102, 126, 234, 0.8),
+                    0 0 60px rgba(102, 126, 234, 0.5),
+                    inset 0 0 30px rgba(255,255,255,0.2);
+            }
+        }
+        
+        /* تحسين القوائم المنسدلة */
+        .dropdown-menu {
+            transform-origin: top;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, transparent);
+            height: 3px;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+            animation: speedDivider 2s ease-in-out infinite;
+        }
+        
+        .section-divider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 159, 243, 0.8), rgba(78, 205, 196, 0.8), transparent);
+            animation: speedDivider 2s ease-in-out infinite 0.5s;
+        }
+        
+        @keyframes speedDivider {
+            0% { 
+                left: -100%; 
+                transform: scaleX(0.5);
+            }
+            50% { 
+                transform: scaleX(1.2);
+            }
+            100% { 
+                left: 100%; 
+                transform: scaleX(0.5);
+            }
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .portfolio-item:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .portfolio-item:hover {
+            transform: scale(1.08) rotateY(5deg) rotateX(5deg);
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.2),
+                0 0 0 1px rgba(255,255,255,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95), rgba(118, 75, 162, 0.95));
+            opacity: 0;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .stats-counter {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2, #667eea);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: statsGradient 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        @keyframes statsGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background: linear-gradient(90deg, #e5e7eb, #f3f4f6);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            transition: width 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: skillShine 2s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .skill-progress::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: skillGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes skillShine {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes skillGlow {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-left: 4px solid #667eea;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .testimonial-card:hover::before {
+            opacity: 1;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .animate-slide-up {
+            animation: slideInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        /* تأثيرات إضافية للنصوص */
+        h1, h2, h3 {
+            position: relative;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: white;
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+        
+        /* تأثيرات الأزرار المحسنة */
+        .btn-enhanced {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-enhanced:hover::before {
+            left: 100%;
+        }
+        
+        .btn-enhanced:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* تأثيرات الجسيمات المتحركة */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            animation: particleFloat 8s linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* تحسينات الاستجابة */
+        @media (max-width: 768px) {
+            .card-hover:hover {
+                transform: translateY(-5px);
+            }
+            
+            .portfolio-item:hover {
+                transform: scale(1.02);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Menu -->
+    <nav class="gradient-bg text-white py-2 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="text-lg font-bold">م / مصطفى منصور</div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="#home" class="text-white hover:text-yellow-300 transition duration-300 text-sm px-2 py-1 rounded hover:bg-white hover:bg-opacity-20">الرئيسية</a>
+                    
+                    <!-- Services Dropdown -->
+                    <div class="relative">
+                        <button id="services-btn" class="text-white hover:text-yellow-300 transition duration-300 text-sm px-2 py-1 rounded hover:bg-white hover:bg-opacity-20 flex items-center">
+                            الخدمات
+                            <svg class="dropdown-arrow w-3 h-3 mr-1 transform transition-transform duration-200" id="services-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="services-dropdown" class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg opacity-0 invisible transform translate-y-2 transition-all duration-300 z-50" style="display: none;">
+                            <a href="#ecommerce" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-t-lg">المتاجر الإلكترونية</a>
+                            <a href="#design" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600">التصميم الجرافيكي</a>
+                            <a href="#networks" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600">الشبكات</a>
+                            <a href="#advertising" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-b-lg">الحملات الإعلانية</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="text-white hover:text-yellow-300 transition duration-300 text-sm px-2 py-1 rounded hover:bg-white hover:bg-opacity-20">تواصل معي</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden">
+                    <button id="mobile-menu-btn" class="text-white hover:text-yellow-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden pt-3 pb-2">
+                <a href="#home" class="block py-1 text-white hover:text-yellow-300 transition duration-300 text-sm px-2 rounded hover:bg-white hover:bg-opacity-20">الرئيسية</a>
+                <a href="#ecommerce" class="block py-1 text-white hover:text-yellow-300 transition duration-300 text-sm px-2 rounded hover:bg-white hover:bg-opacity-20">المتاجر الإلكترونية</a>
+                <a href="#design" class="block py-1 text-white hover:text-yellow-300 transition duration-300 text-sm px-2 rounded hover:bg-white hover:bg-opacity-20">التصميم الجرافيكي</a>
+                <a href="#networks" class="block py-1 text-white hover:text-yellow-300 transition duration-300 text-sm px-2 rounded hover:bg-white hover:bg-opacity-20">الشبكات</a>
+                <a href="#advertising" class="block py-1 text-white hover:text-yellow-300 transition duration-300 text-sm px-2 rounded hover:bg-white hover:bg-opacity-20">الحملات الإعلانية</a>
+                <a href="#contact" class="block py-1 text-white hover:text-yellow-300 transition duration-300 text-sm px-2 rounded hover:bg-white hover:bg-opacity-20">تواصل معي</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header id="home" class="gradient-bg text-white py-20">
+        <!-- Animated Particles -->
+        <div class="particles">
+            <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+            <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+            <div class="particle" style="left: 70%; animation-delay: 6s;"></div>
+            <div class="particle" style="left: 80%; animation-delay: 7s;"></div>
+            <div class="particle" style="left: 90%; animation-delay: 0.5s;"></div>
+            <div class="particle" style="left: 15%; animation-delay: 1.5s;"></div>
+            <div class="particle" style="left: 25%; animation-delay: 2.5s;"></div>
+            <div class="particle" style="left: 35%; animation-delay: 3.5s;"></div>
+            <div class="particle" style="left: 45%; animation-delay: 4.5s;"></div>
+            <div class="particle" style="left: 55%; animation-delay: 5.5s;"></div>
+            <div class="particle" style="left: 65%; animation-delay: 6.5s;"></div>
+            <div class="particle" style="left: 75%; animation-delay: 7.5s;"></div>
+            <div class="particle" style="left: 85%; animation-delay: 0.8s;"></div>
+            <div class="particle" style="left: 95%; animation-delay: 1.8s;"></div>
+        </div>
+        <div class="container mx-auto px-6 text-center">
+            <div class="animate-float mb-8">
+                <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center text-6xl text-purple-600 mb-6">
+                    👨‍💻
+                </div>
+            </div>
+            <h1 class="text-5xl font-bold mb-12 animate-pulse-slow">م / مصطفى منصور</h1>
+            <div class="text-lg mb-8 max-w-4xl mx-auto leading-relaxed">
+                <p class="mb-8 animate-bounce-slow text-xl mt-8">متخصص في أربعة مجالات رئيسية:</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3 text-center">
+                    <a href="#ecommerce" class="bg-white bg-opacity-20 rounded-xl p-5 animate-scale hover:bg-opacity-40 hover:scale-105 transition-all duration-500 cursor-pointer group backdrop-blur-sm border border-white border-opacity-30 shadow-lg hover:shadow-2xl">
+                        <div class="text-2xl mb-3 animate-bounce-slow group-hover:scale-110 transition-transform duration-300">🛒</div>
+                        <p class="font-semibold text-sm leading-tight">تصميم المتاجر<br>الإلكترونية</p>
+                        <div class="w-8 h-0.5 bg-white bg-opacity-50 mx-auto mt-2 group-hover:w-12 transition-all duration-300"></div>
+                    </a>
+                    <a href="#design" class="bg-white bg-opacity-20 rounded-xl p-5 animate-scale hover:bg-opacity-40 hover:scale-105 transition-all duration-500 cursor-pointer group backdrop-blur-sm border border-white border-opacity-30 shadow-lg hover:shadow-2xl" style="animation-delay: 0.2s">
+                        <div class="text-2xl mb-3 animate-bounce-slow group-hover:scale-110 transition-transform duration-300">🎨</div>
+                        <p class="font-semibold text-sm leading-tight">التصميم<br>الجرافيكي</p>
+                        <div class="w-8 h-0.5 bg-white bg-opacity-50 mx-auto mt-2 group-hover:w-12 transition-all duration-300"></div>
+                    </a>
+                    <a href="#networks" class="bg-white bg-opacity-20 rounded-xl p-5 animate-scale hover:bg-opacity-40 hover:scale-105 transition-all duration-500 cursor-pointer group backdrop-blur-sm border border-white border-opacity-30 shadow-lg hover:shadow-2xl" style="animation-delay: 0.4s">
+                        <div class="text-2xl mb-3 animate-bounce-slow group-hover:scale-110 transition-transform duration-300">🌐</div>
+                        <p class="font-semibold text-sm leading-tight">الشبكات والتيار<br>الخفيف</p>
+                        <div class="w-8 h-0.5 bg-white bg-opacity-50 mx-auto mt-2 group-hover:w-12 transition-all duration-300"></div>
+                    </a>
+                    <a href="#advertising" class="bg-white bg-opacity-20 rounded-xl p-5 animate-scale hover:bg-opacity-40 hover:scale-105 transition-all duration-500 cursor-pointer group backdrop-blur-sm border border-white border-opacity-30 shadow-lg hover:shadow-2xl" style="animation-delay: 0.6s">
+                        <div class="text-2xl mb-3 animate-bounce-slow group-hover:scale-110 transition-transform duration-300">📱</div>
+                        <p class="font-semibold text-sm leading-tight">الحملات<br>الإعلانية</p>
+                        <div class="w-8 h-0.5 bg-white bg-opacity-50 mx-auto mt-2 group-hover:w-12 transition-all duration-300"></div>
+                    </a>
+                </div>
+            </div>
+            <a href="https://wa.me/966597370084" target="_blank" class="btn-enhanced bg-white bg-opacity-20 text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:bg-opacity-30 transition duration-300 inline-block animate-glow border border-white border-opacity-30">
+                تواصل على الواتس واسأل على نماذج الأعمال
+            </a>
+        </div>
+    </header>
+
+    <!-- Introduction -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8">مرحباً بكم في بورتفوليو أعمالي</h2>
+                <p class="text-lg text-gray-600 leading-relaxed mb-12">
+                    يسعدني أن أشارككم أعمالي ومهاراتي في مجال التكنولوجيا والتصميم، وأتطلع إلى التعاون معكم لتحقيق أهدافكم وتطوير مشاريعكم بأحدث التقنيات والحلول المبتكرة.
+                </p>
+                
+                <!-- Statistics -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center animate-bounce-slow">
+                        <div class="stats-counter animate-pulse-slow" data-count="150">0</div>
+                        <p class="text-gray-600 font-semibold">مشروع مكتمل</p>
+                    </div>
+                    <div class="text-center animate-bounce-slow" style="animation-delay: 0.3s">
+                        <div class="stats-counter animate-pulse-slow" data-count="120">0</div>
+                        <p class="text-gray-600 font-semibold">عميل راضي</p>
+                    </div>
+                    <div class="text-center animate-bounce-slow" style="animation-delay: 0.6s">
+                        <div class="stats-counter animate-pulse-slow" data-count="5">0</div>
+                        <p class="text-gray-600 font-semibold">سنوات خبرة</p>
+                    </div>
+                    <div class="text-center animate-bounce-slow" style="animation-delay: 0.9s">
+                        <div class="stats-counter animate-pulse-slow" data-count="24">0</div>
+                        <p class="text-gray-600 font-semibold">ساعة دعم</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- E-commerce Section -->
+    <section id="ecommerce" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">تصميم المتاجر الإلكترونية</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="card-hover bg-white rounded-lg p-8 shadow-lg">
+                    <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl mb-6">
+                        🛒
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">تصميم على منصة سلة ومنصة وزد</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-center"><span class="text-green-500 ml-2">✓</span> تصميم اللوجو المخصص</li>
+                        <li class="flex items-center"><span class="text-green-500 ml-2">✓</span> تصميم البنرات الجذابة</li>
+                        <li class="flex items-center"><span class="text-green-500 ml-2">✓</span> تصميم المتجر كامل</li>
+                        <li class="flex items-center"><span class="text-green-500 ml-2">✓</span> ربط شركات الشحن</li>
+                        <li class="flex items-center"><span class="text-green-500 ml-2">✓</span> إصدار وثيقة العمل الحر</li>
+                    </ul>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg p-8 shadow-lg">
+                    <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl mb-6">
+                        💻
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">برمجة المواقع الإلكترونية</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-center"><span class="text-green-500 ml-2">✓</span> تطوير مواقع WordPress</li>
+                        <li class="flex items-center"><span class="text-green-500 ml-2">✓</span> برمجة صفحات الهبوط</li>
+                        <li class="flex items-center"><span class="text-green-500 ml-2">✓</span> تصميم واجهات مستخدم مبتكرة</li>
+                        <li class="flex items-center"><span class="text-green-500 ml-2">✓</span> تحسين معدل التحويل</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- E-commerce Portfolio Examples -->
+            <h3 class="text-2xl font-bold text-center text-gray-800 mb-8">نماذج من أعمالي الحقيقية - متاجر سلة</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="portfolio-item bg-white shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-4xl mb-2">👗</div>
+                            <p class="font-semibold">Junior Elegance</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4 class="text-xl font-bold mb-2">Junior Elegance</h4>
+                        <p class="text-sm mb-4">متجر أزياء الأطفال الأنيقة - تصميم متكامل على منصة سلة</p>
+                        <div class="flex space-x-2 mb-4">
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">سلة</span>
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">أزياء أطفال</span>
+                        </div>
+                        <a href="https://junior-elegance.com/" target="_blank" class="bg-white text-purple-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition duration-300">
+                            زيارة المتجر
+                        </a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-4xl mb-2">🌿</div>
+                            <p class="font-semibold">حقل الطبيعة</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4 class="text-xl font-bold mb-2">حقل الطبيعة</h4>
+                        <p class="text-sm mb-4">متجر المنتجات الطبيعية والعضوية - منصة سلة</p>
+                        <div class="flex space-x-2 mb-4">
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">سلة</span>
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">منتجات طبيعية</span>
+                        </div>
+                        <a href="https://salla.sa/haql-altabiea" target="_blank" class="bg-white text-green-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition duration-300">
+                            زيارة المتجر
+                        </a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-rose-400 to-pink-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-4xl mb-2">✨</div>
+                            <p class="font-semibold">Designer Zahra</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4 class="text-xl font-bold mb-2">Designer Zahra</h4>
+                        <p class="text-sm mb-4">متجر التصاميم والأزياء الراقية - تصميم احترافي</p>
+                        <div class="flex space-x-2 mb-4">
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">تصميم مخصص</span>
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-xs">أزياء راقية</span>
+                        </div>
+                        <a href="https://designerzahra.com" target="_blank" class="bg-white text-rose-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition duration-300">
+                            زيارة المتجر
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Graphic Design Section -->
+    <section id="design" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">التصميم الجرافيكي</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="card-hover bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg p-6 text-center">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">تصميم اللوجو</h3>
+                    <p class="text-gray-600">شعارات مبتكرة تعبر عن هوية علامتك التجارية</p>
+                </div>
+
+                <div class="card-hover bg-gradient-to-br from-green-50 to-teal-50 rounded-lg p-6 text-center">
+                    <div class="text-4xl mb-4">📱</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">تصميم سوشيال ميديا</h3>
+                    <p class="text-gray-600">محتوى بصري مبتكر لمنصات التواصل الاجتماعي</p>
+                </div>
+
+                <div class="card-hover bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-6 text-center">
+                    <div class="text-4xl mb-4">🎬</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">فيديو إعلاني</h3>
+                    <p class="text-gray-600">مقاطع فيديو إعلانية مؤثرة وملفتة للنظر</p>
+                </div>
+
+                <div class="card-hover bg-gradient-to-br from-pink-50 to-purple-50 rounded-lg p-6 text-center">
+                    <div class="text-4xl mb-4">🖼️</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">تصميم البنرات</h3>
+                    <p class="text-gray-600">بنرات إعلانية مبتكرة وجذابة</p>
+                </div>
+
+                <div class="card-hover bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-6 text-center">
+                    <div class="text-4xl mb-4">🏢</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">الهوية البصرية</h3>
+                    <p class="text-gray-600">هوية بصرية متكاملة للعلامات التجارية</p>
+                </div>
+
+                <div class="card-hover bg-gradient-to-br from-indigo-50 to-blue-50 rounded-lg p-6 text-center">
+                    <div class="text-4xl mb-4">✨</div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">تصميمات مخصصة</h3>
+                    <p class="text-gray-600">حلول تصميم مبتكرة حسب احتياجاتك</p>
+                </div>
+            </div>
+
+            <!-- Logo Portfolio Section -->
+            <h3 class="text-2xl font-bold text-center text-gray-800 mb-8">نماذج أعمال اللوجو</h3>
+            <div class="text-center mb-8">
+                <a href="https://drive.google.com/drive/folders/139b9pGYNgUEAXuiCOwoQOop6UlzxFkUh?usp=sharing" 
+                   target="_blank" 
+                   class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 animate-glow">
+                    <span class="ml-2 text-xl">📁</span>
+                    مشاهدة جميع نماذج اللوجو
+                </a>
+            </div>
+            
+            <!-- Sample Logo Designs -->
+            <div class="grid md:grid-cols-4 gap-4 mb-12">
+                <div class="portfolio-item bg-white shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-3xl mb-2">🏪</div>
+                            <p class="font-semibold text-sm">لوجو متجر</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4 class="text-lg font-bold mb-2">لوجو متجر الإلكترونيات</h4>
+                        <p class="text-xs mb-3">تصميم شعار عصري ومميز</p>
+                        <span class="bg-white bg-opacity-20 px-2 py-1 rounded-full text-xs">لوجو</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-3xl mb-2">🏢</div>
+                            <p class="font-semibold text-sm">لوجو شركة</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4 class="text-lg font-bold mb-2">لوجو شركة تجارية</h4>
+                        <p class="text-xs mb-3">هوية بصرية احترافية</p>
+                        <span class="bg-white bg-opacity-20 px-2 py-1 rounded-full text-xs">لوجو</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-3xl mb-2">🍕</div>
+                            <p class="font-semibold text-sm">لوجو مطعم</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4 class="text-lg font-bold mb-2">لوجو مطعم</h4>
+                        <p class="text-xs mb-3">تصميم جذاب للمطاعم</p>
+                        <span class="bg-white bg-opacity-20 px-2 py-1 rounded-full text-xs">لوجو</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-3xl mb-2">⚽</div>
+                            <p class="font-semibold text-sm">لوجو رياضي</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4 class="text-lg font-bold mb-2">لوجو نادي رياضي</h4>
+                        <p class="text-xs mb-3">تصميم قوي ومؤثر</p>
+                        <span class="bg-white bg-opacity-20 px-2 py-1 rounded-full text-xs">لوجو</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Graphic Design Portfolio Examples -->
+            <h3 class="text-2xl font-bold text-center text-gray-800 mb-8">معرض أعمال التصميم الجرافيكي الأخرى</h3>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="portfolio-item bg-white shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-3xl mb-2">📊</div>
+                            <p class="font-semibold text-sm">إنفوجرافيك</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4 class="text-lg font-bold mb-2">إنفوجرافيك تسويقي</h4>
+                        <p class="text-xs mb-3">تصميم معلوماتي جذاب</p>
+                        <span class="bg-white bg-opacity-20 px-2 py-1 rounded-full text-xs">إنفوجرافيك</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-3xl mb-2">📱</div>
+                            <p class="font-semibold text-sm">بوست انستقرام</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4 class="text-lg font-bold mb-2">منشورات سوشيال ميديا</h4>
+                        <p class="text-xs mb-3">تصميمات جذابة للمنصات</p>
+                        <span class="bg-white bg-opacity-20 px-2 py-1 rounded-full text-xs">سوشيال</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-3xl mb-2">🎥</div>
+                            <p class="font-semibold text-sm">فيديو موشن</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4 class="text-lg font-bold mb-2">فيديو إعلاني متحرك</h4>
+                        <p class="text-xs mb-3">موشن جرافيك احترافي</p>
+                        <span class="bg-white bg-opacity-20 px-2 py-1 rounded-full text-xs">فيديو</span>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-3xl mb-2">🎨</div>
+                            <p class="font-semibold text-sm">تصميم إبداعي</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h4 class="text-lg font-bold mb-2">تصميمات إبداعية</h4>
+                        <p class="text-xs mb-3">أعمال فنية مبتكرة</p>
+                        <span class="bg-white bg-opacity-20 px-2 py-1 rounded-full text-xs">إبداعي</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Networks Section -->
+    <section id="networks" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">الشبكات والتيار الخفيف</h2>
+            
+            <!-- Introduction -->
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                    أقدم خدمات متكاملة في مجال الشبكات والتيار الخفيف مع خبرة تزيد عن 5 سنوات في تصميم وتنفيذ الحلول التقنية المتطورة للمنازل والشركات والمؤسسات
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-white rounded-lg p-4 shadow-md">
+                        <div class="text-2xl mb-2">🎯</div>
+                        <p class="text-sm font-semibold text-gray-800">دقة في التنفيذ</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 shadow-md">
+                        <div class="text-2xl mb-2">⚡</div>
+                        <p class="text-sm font-semibold text-gray-800">سرعة في الإنجاز</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 shadow-md">
+                        <div class="text-2xl mb-2">🛡️</div>
+                        <p class="text-sm font-semibold text-gray-800">ضمان شامل</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 shadow-md">
+                        <div class="text-2xl mb-2">📞</div>
+                        <p class="text-sm font-semibold text-gray-800">دعم مستمر</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Services -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="card-hover bg-white rounded-lg p-8 shadow-lg text-center">
+                    <div class="service-icon w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl mb-6 mx-auto">
+                        📹
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">أنظمة المراقبة والأمان</h3>
+                    <ul class="text-gray-600 text-sm space-y-2 text-right">
+                        <li>• كاميرات IP عالية الدقة (4K/8MP)</li>
+                        <li>• كاميرات الرؤية الليلية</li>
+                        <li>• أنظمة التسجيل المركزي (NVR/DVR)</li>
+                        <li>• المراقبة عن بُعد عبر الهاتف</li>
+                        <li>• كاميرات مقاومة للعوامل الجوية</li>
+                        <li>• أنظمة الإنذار المتطورة</li>
+                    </ul>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg p-8 shadow-lg text-center">
+                    <div class="service-icon w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl mb-6 mx-auto">
+                        🌐
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">الشبكات والاتصالات</h3>
+                    <ul class="text-gray-600 text-sm space-y-2 text-right">
+                        <li>• تصميم الشبكات المحلية (LAN)</li>
+                        <li>• الشبكات اللاسلكية (Wi-Fi)</li>
+                        <li>• توصيل الألياف البصرية</li>
+                        <li>• أنظمة الاتصال الداخلي</li>
+                        <li>• شبكات الإنترنت عالية السرعة</li>
+                        <li>• حلول الشبكات السحابية</li>
+                    </ul>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg p-8 shadow-lg text-center">
+                    <div class="service-icon w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl mb-6 mx-auto">
+                        🔧
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-gray-800">الصيانة والدعم التقني</h3>
+                    <ul class="text-gray-600 text-sm space-y-2 text-right">
+                        <li>• صيانة دورية للأنظمة</li>
+                        <li>• إصلاح الأعطال الطارئة</li>
+                        <li>• تحديث البرمجيات</li>
+                        <li>• استبدال القطع التالفة</li>
+                        <li>• تدريب المستخدمين</li>
+                        <li>• دعم تقني 24/7</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Additional Services -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg mb-16">
+                <h3 class="text-2xl font-bold text-center text-gray-800 mb-8">خدمات إضافية متخصصة</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg">
+                        <div class="text-3xl mb-3">🏠</div>
+                        <h4 class="font-semibold text-gray-800 mb-2">البيوت الذكية</h4>
+                        <p class="text-gray-600 text-sm">أنظمة التحكم الذكي والأتمتة المنزلية</p>
+                    </div>
+                    <div class="text-center p-4 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg">
+                        <div class="text-3xl mb-3">🔊</div>
+                        <h4 class="font-semibold text-gray-800 mb-2">الأنظمة الصوتية</h4>
+                        <p class="text-gray-600 text-sm">تركيب أنظمة الصوت والإذاعة الداخلية</p>
+                    </div>
+                    <div class="text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg">
+                        <div class="text-3xl mb-3">🚪</div>
+                        <h4 class="font-semibold text-gray-800 mb-2">التحكم في الدخول</h4>
+                        <p class="text-gray-600 text-sm">أنظمة البصمة والكروت الذكية</p>
+                    </div>
+                    <div class="text-center p-4 bg-gradient-to-br from-orange-50 to-red-50 rounded-lg">
+                        <div class="text-3xl mb-3">💡</div>
+                        <h4 class="font-semibold text-gray-800 mb-2">الإضاءة الذكية</h4>
+                        <p class="text-gray-600 text-sm">أنظمة الإضاءة المتطورة والموفرة للطاقة</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Specifications -->
+            <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl p-8 text-white mb-16">
+                <h3 class="text-2xl font-bold text-center mb-8">المواصفات التقنية والمعدات</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-yellow-300">🎥 كاميرات المراقبة</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li>• دقة 4K Ultra HD (8 ميجابكسل)</li>
+                            <li>• رؤية ليلية تصل إلى 50 متر</li>
+                            <li>• مقاومة للماء والغبار IP67</li>
+                            <li>• تقنية الذكاء الاصطناعي</li>
+                            <li>• كشف الحركة المتطور</li>
+                            <li>• تسجيل صوتي عالي الجودة</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-blue-300">🌐 معدات الشبكات</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li>• راوترات Gigabit عالية السرعة</li>
+                            <li>• سويتشات مُدارة PoE</li>
+                            <li>• نقاط وصول Wi-Fi 6</li>
+                            <li>• كابلات Cat6/Cat6A</li>
+                            <li>• ألياف بصرية أحادية ومتعددة</li>
+                            <li>• أنظمة UPS للحماية</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-green-300">🔧 أدوات التركيب</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li>• أجهزة قياس الشبكات المتطورة</li>
+                            <li>• معدات لحام الألياف البصرية</li>
+                            <li>• أدوات تجعيد الكابلات</li>
+                            <li>• أجهزة اختبار الإشارة</li>
+                            <li>• معدات الحفر والتمديد</li>
+                            <li>• أدوات السلامة المهنية</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Networks Portfolio Examples -->
+            <h3 class="text-2xl font-bold text-center text-gray-800 mb-8">مشاريع الشبكات والأمان المنجزة</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="card-hover bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-5xl mb-4">🏢</div>
+                            <p class="font-semibold text-lg">مجمع تجاري</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">نظام أمان متكامل</h4>
+                        <p class="text-gray-600 mb-4">تركيب 24 كاميرا مراقبة عالية الدقة مع نظام تسجيل مركزي وشبكة إنترنت متطورة</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">24 كاميرا IP</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">NVR 32 قناة</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">مراقبة عن بعد</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            <p>• مدة التنفيذ: 5 أيام</p>
+                            <p>• ضمان: سنتان شامل</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-blue-600 to-indigo-800 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-5xl mb-4">🏠</div>
+                            <p class="font-semibold text-lg">فيلا سكنية</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">شبكة منزلية ذكية</h4>
+                        <p class="text-gray-600 mb-4">تصميم وتنفيذ شبكة منزلية مع نظام أمان وإنترنت عالي السرعة وتحكم ذكي</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">Wi-Fi 6</span>
+                            <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">12 كاميرا</span>
+                            <span class="bg-teal-100 text-teal-800 px-3 py-1 rounded-full text-sm">تحكم ذكي</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            <p>• مدة التنفيذ: 3 أيام</p>
+                            <p>• ضمان: سنتان شامل</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-green-600 to-emerald-800 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-5xl mb-4">🏫</div>
+                            <p class="font-semibold text-lg">مدرسة خاصة</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-3 text-gray-800">شبكة تعليمية متطورة</h4>
+                        <p class="text-gray-600 mb-4">إنشاء شبكة تعليمية شاملة مع نظام مراقبة وإنترنت عالي السرعة لجميع الفصول</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">شبكة تعليمية</span>
+                            <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">40 كاميرا</span>
+                            <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">إنترنت فائق</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            <p>• مدة التنفيذ: 7 أيام</p>
+                            <p>• ضمان: 3 سنوات شامل</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Work by Visits -->
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8">
+                <h3 class="text-2xl font-bold text-center text-gray-800 mb-8">العمل بنظام الزيارات</h3>
+                
+                <!-- Main Info -->
+                <div class="text-center mb-8">
+                    <div class="inline-flex items-center bg-white rounded-full px-6 py-3 shadow-md mb-4">
+                        <div class="text-2xl ml-3">🚗</div>
+                        <span class="text-lg font-semibold text-gray-800">نأتي إليك أينما كنت</span>
+                    </div>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        نقدم خدماتنا بنظام الزيارات المنزلية والمكتبية لراحتكم، مع فريق متخصص ومعدات احترافية
+                    </p>
+                </div>
+
+                <!-- Visit Types -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <div class="text-4xl mb-4">🏠</div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-4">الزيارات المنزلية</h4>
+                        <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                            <li>• تركيب أنظمة المراقبة</li>
+                            <li>• إعداد الشبكات المنزلية</li>
+                            <li>• صيانة الأجهزة</li>
+                            <li>• استشارات تقنية</li>
+                        </ul>
+                        <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold">
+                            متاح في جميع أحياء الرياض
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center border-2 border-purple-500">
+                        <div class="text-4xl mb-4">🏢</div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-4">الزيارات التجارية</h4>
+                        <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                            <li>• تركيب أنظمة الأمان</li>
+                            <li>• إعداد الشبكات المكتبية</li>
+                            <li>• الصيانة الدورية</li>
+                            <li>• التدريب والدعم</li>
+                        </ul>
+                        <div class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-semibold">
+                            خدمة مواعيد مرنة
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-6 shadow-md text-center">
+                        <div class="text-4xl mb-4">⚡</div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-4">الزيارات الطارئة</h4>
+                        <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                            <li>• إصلاح الأعطال العاجلة</li>
+                            <li>• استعادة الأنظمة</li>
+                            <li>• دعم تقني فوري</li>
+                            <li>• حلول سريعة</li>
+                        </ul>
+                        <div class="bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-semibold">
+                            متاح 24/7 للطوارئ
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visit Process -->
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h4 class="text-xl font-bold text-center text-gray-800 mb-6">كيف تتم الزيارة؟</h4>
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">1</div>
+                            <h5 class="font-semibold text-gray-800 mb-2">📞 التواصل</h5>
+                            <p class="text-sm text-gray-600">اتصل أو راسل عبر الواتساب</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">2</div>
+                            <h5 class="font-semibold text-gray-800 mb-2">📅 الموعد</h5>
+                            <p class="text-sm text-gray-600">تحديد موعد مناسب للزيارة</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">3</div>
+                            <h5 class="font-semibold text-gray-800 mb-2">🔧 التنفيذ</h5>
+                            <p class="text-sm text-gray-600">تنفيذ العمل بأعلى جودة</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">4</div>
+                            <h5 class="font-semibold text-gray-800 mb-2">✅ التسليم</h5>
+                            <p class="text-sm text-gray-600">تسليم العمل مع الضمان</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact for Visit -->
+                <div class="text-center mt-8">
+                    <a href="https://wa.me/966597370084?text=أريد حجز زيارة لخدمات الشبكات والأمان" 
+                       target="_blank"
+                       class="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-bold text-lg transition duration-300 transform hover:scale-105 animate-glow">
+                        <span class="ml-3 text-2xl">🚗</span>
+                        احجز زيارة الآن
+                    </a>
+                    <p class="text-sm text-gray-500 mt-3">
+                        * رسوم الزيارة تُحتسب حسب المسافة والخدمة المطلوبة
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Advertising Section -->
+    <section id="advertising" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">إنشاء الحملات الإعلانية</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+                <div class="card-hover bg-gradient-to-br from-pink-100 to-purple-100 rounded-lg p-8 text-center">
+                    <div class="text-5xl mb-6">📱</div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">تيك توك وسناب شات</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        تصميم حملات إعلانية مبتكرة ومؤثرة على منصات تيك توك وسناب شات لجذب الجمهور المستهدف
+                    </p>
+                </div>
+
+                <div class="card-hover bg-gradient-to-br from-blue-100 to-indigo-100 rounded-lg p-8 text-center">
+                    <div class="text-5xl mb-6">🚀</div>
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">جميع المنصات</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        إدارة وتنفيذ حملات إعلانية احترافية على مختلف منصات التواصل الاجتماعي لتحقيق أفضل النتائج
+                    </p>
+                </div>
+            </div>
+
+            <!-- Advertising Portfolio Examples -->
+            <h3 class="text-2xl font-bold text-center text-gray-800 mb-8">حملات إعلانية ناجحة</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card-hover bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-40 bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-4xl mb-2">💄</div>
+                            <p class="font-semibold">حملة مستحضرات تجميل</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold mb-2 text-gray-800">حملة تيك توك</h4>
+                        <p class="text-gray-600 text-sm mb-3">زيادة المبيعات بنسبة 300%</p>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-purple-600 font-semibold">2M مشاهدة</span>
+                            <span class="text-green-600 font-semibold">15% تحويل</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-40 bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-4xl mb-2">🏋️</div>
+                            <p class="font-semibold">حملة نادي رياضي</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold mb-2 text-gray-800">حملة سناب شات</h4>
+                        <p class="text-gray-600 text-sm mb-3">زيادة الاشتراكات بنسبة 250%</p>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-purple-600 font-semibold">1.5M وصول</span>
+                            <span class="text-green-600 font-semibold">12% تحويل</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="h-40 bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-4xl mb-2">🍔</div>
+                            <p class="font-semibold">حملة مطعم</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h4 class="font-bold mb-2 text-gray-800">حملة متعددة المنصات</h4>
+                        <p class="text-gray-600 text-sm mb-3">زيادة الطلبات بنسبة 400%</p>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-purple-600 font-semibold">3M مشاهدة</span>
+                            <span class="text-green-600 font-semibold">18% تحويل</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">المهارات والخبرات</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">المهارات التقنية</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold text-gray-700">تصميم المتاجر الإلكترونية</span>
+                                <span class="text-purple-600 font-bold">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold text-gray-700">التصميم الجرافيكي</span>
+                                <span class="text-purple-600 font-bold">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold text-gray-700">الشبكات والأمان</span>
+                                <span class="text-purple-600 font-bold">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold text-gray-700">الحملات الإعلانية</span>
+                                <span class="text-purple-600 font-bold">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">آراء العملاء</h3>
+                    <div class="space-y-6">
+                        <div class="testimonial-card p-6 rounded-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                                    أ
+                                </div>
+                                <div class="mr-4">
+                                    <h4 class="font-semibold text-gray-800">أحمد السعيد</h4>
+                                    <p class="text-gray-600 text-sm">صاحب متجر إلكتروني</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 italic">"عمل احترافي ممتاز، المتجر أصبح أكثر جاذبية ومبيعاتنا زادت بشكل ملحوظ"</p>
+                        </div>
+                        
+                        <div class="testimonial-card p-6 rounded-lg">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">
+                                    س
+                                </div>
+                                <div class="mr-4">
+                                    <h4 class="font-semibold text-gray-800">سارة محمد</h4>
+                                    <p class="text-gray-600 text-sm">مديرة تسويق</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 italic">"الحملات الإعلانية كانت فعالة جداً وحققت نتائج فاقت توقعاتنا"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">تواصل معي</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    مستعد لتحويل أفكارك إلى واقع رقمي مبهر. دعنا نناقش مشروعك القادم - 0597370084
+                </p>
+            </div>
+            
+            <!-- Main WhatsApp Contact - Prominent Section -->
+            <div class="max-w-4xl mx-auto mb-16">
+                <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-3xl p-8 text-center shadow-2xl border-2 border-green-400 animate-glow">
+                    <div class="animate-bounce-slow mb-6">
+                        <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center text-6xl mx-auto shadow-lg">
+                            📱
+                        </div>
+                    </div>
+                    <h3 class="text-4xl font-bold mb-4 text-white">تواصل معي عبر الواتساب</h3>
+                    <p class="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
+                        للحصول على استشارة مجانية ومشاهدة نماذج الأعمال الحقيقية
+                    </p>
+                    
+                    <!-- Phone Number Display -->
+                    <div class="bg-white bg-opacity-20 rounded-2xl p-6 mb-8 backdrop-blur-sm">
+                        <div class="text-3xl font-bold text-white mb-2 tracking-wider">
+                            0597370084
+                        </div>
+                        <p class="text-green-100">انقر على الرقم للتواصل المباشر</p>
+                    </div>
+                    
+                    <!-- Multiple WhatsApp Buttons -->
+                    <div class="grid md:grid-cols-2 gap-4 mb-8">
+                        <a href="https://wa.me/966597370084?text=مرحباً، أريد مشاهدة نماذج أعمالك والاستفسار عن خدماتك" 
+                           target="_blank"
+                           class="btn-enhanced bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg transition duration-300 transform hover:scale-105 hover:bg-gray-100 flex items-center justify-center">
+                            <span class="ml-3 text-2xl">💬</span>
+                            ابدأ المحادثة الآن
+                        </a>
+                        
+                        <a href="https://wa.me/966597370084?text=أريد الاستفسار عن خدمات المتاجر الإلكترونية" 
+                           target="_blank"
+                           class="btn-enhanced bg-green-800 text-white px-8 py-4 rounded-full font-bold text-lg transition duration-300 transform hover:scale-105 hover:bg-green-900 flex items-center justify-center">
+                            <span class="ml-3 text-2xl">🛒</span>
+                            استفسار المتاجر
+                        </a>
+                        
+                        <a href="https://wa.me/966597370084?text=أريد الاستفسار عن خدمات التصميم الجرافيكي" 
+                           target="_blank"
+                           class="btn-enhanced bg-green-800 text-white px-8 py-4 rounded-full font-bold text-lg transition duration-300 transform hover:scale-105 hover:bg-green-900 flex items-center justify-center">
+                            <span class="ml-3 text-2xl">🎨</span>
+                            استفسار التصميم
+                        </a>
+                        
+                        <a href="https://wa.me/966597370084?text=أريد الاستفسار عن خدمات الشبكات والأمان" 
+                           target="_blank"
+                           class="btn-enhanced bg-green-800 text-white px-8 py-4 rounded-full font-bold text-lg transition duration-300 transform hover:scale-105 hover:bg-green-900 flex items-center justify-center">
+                            <span class="ml-3 text-2xl">🌐</span>
+                            استفسار الشبكات
+                        </a>
+                    </div>
+                    
+                    <!-- Quick Features -->
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div class="bg-white bg-opacity-10 rounded-lg p-4 backdrop-blur-sm">
+                            <div class="text-3xl mb-2">⚡</div>
+                            <p class="text-white font-semibold">رد فوري</p>
+                            <p class="text-green-200 text-sm">خلال دقائق</p>
+                        </div>
+                        <div class="bg-white bg-opacity-10 rounded-lg p-4 backdrop-blur-sm">
+                            <div class="text-3xl mb-2">📋</div>
+                            <p class="text-white font-semibold">نماذج حقيقية</p>
+                            <p class="text-green-200 text-sm">مشاريع منجزة</p>
+                        </div>
+                        <div class="bg-white bg-opacity-10 rounded-lg p-4 backdrop-blur-sm">
+                            <div class="text-3xl mb-2">💡</div>
+                            <p class="text-white font-semibold">استشارة مجانية</p>
+                            <p class="text-green-200 text-sm">بدون التزام</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Contact Information -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6 text-white">طرق التواصل الأخرى</h3>
+                        <div class="space-y-6">
+                            <!-- WhatsApp -->
+                            <div class="flex items-center p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition duration-300 border-l-4 border-green-500">
+                                <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white text-xl ml-4 animate-pulse-slow">
+                                    📱
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">واتساب (الأفضل)</h4>
+                                    <a href="https://wa.me/966597370084" class="text-green-400 hover:text-green-300 transition duration-300 text-lg font-bold">
+                                        0597370084
+                                    </a>
+                                    <p class="text-gray-400 text-sm">متاح 24/7 للرد السريع</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Haraj Profile -->
+                            <div class="flex items-center p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition duration-300 border-l-4 border-yellow-500">
+                                <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white text-xl ml-4">
+                                    🏪
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">موقع حراج</h4>
+                                    <a href="https://haraj.com.sa/users/mostafa_mansour" target="_blank" class="text-yellow-400 hover:text-yellow-300 transition duration-300">
+                                        mostafa_mansour
+                                    </a>
+                                    <p class="text-gray-400 text-sm">ملف شخصي معتمد</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Contact Buttons -->
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold text-yellow-300 mb-4 animate-pulse-slow bg-gray-900 bg-opacity-70 p-3 rounded-lg border border-yellow-300 border-opacity-30">💡 نصيحة: الواتساب هو الأسرع للحصول على نماذج الأعمال</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <a href="https://wa.me/966597370084" target="_blank"
+                               class="btn-enhanced bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-lg font-semibold transition duration-300 text-center flex items-center justify-center animate-glow">
+                                <span class="ml-2 text-2xl animate-bounce-slow">📱</span>
+                                واتساب مباشر
+                            </a>
+                            <a href="https://haraj.com.sa/users/mostafa_mansour" target="_blank"
+                               class="btn-enhanced bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-4 rounded-lg font-semibold transition duration-300 text-center flex items-center justify-center animate-glow">
+                                <span class="ml-2 text-2xl animate-bounce-slow">🏪</span>
+                                ملف حراج
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service-Specific WhatsApp Links -->
+                <div class="bg-gray-800 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-white text-center">تواصل حسب الخدمة المطلوبة</h3>
+                    
+                    <div class="space-y-4">
+                        <a href="https://wa.me/966597370084?text=مرحباً، أريد الاستفسار عن تصميم متجر إلكتروني على منصة سلة أو وزد" 
+                           target="_blank"
+                           class="block bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-lg transition duration-300 transform hover:scale-105">
+                            <div class="flex items-center">
+                                <span class="text-2xl ml-4">🛒</span>
+                                <div>
+                                    <h4 class="font-bold">المتاجر الإلكترونية</h4>
+                                    <p class="text-sm text-purple-200">سلة، وزد، ووردبريس</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://wa.me/966597370084?text=مرحباً، أريد الاستفسار عن خدمات التصميم الجرافيكي واللوجو" 
+                           target="_blank"
+                           class="block bg-pink-600 hover:bg-pink-700 text-white p-4 rounded-lg transition duration-300 transform hover:scale-105">
+                            <div class="flex items-center">
+                                <span class="text-2xl ml-4">🎨</span>
+                                <div>
+                                    <h4 class="font-bold">التصميم الجرافيكي</h4>
+                                    <p class="text-sm text-pink-200">لوجو، بنرات، هوية بصرية</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://wa.me/966597370084?text=مرحباً، أريد الاستفسار عن خدمات الشبكات وأنظمة المراقبة" 
+                           target="_blank"
+                           class="block bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-lg transition duration-300 transform hover:scale-105">
+                            <div class="flex items-center">
+                                <span class="text-2xl ml-4">🌐</span>
+                                <div>
+                                    <h4 class="font-bold">الشبكات والأمان</h4>
+                                    <p class="text-sm text-blue-200">كاميرات، شبكات، تيار خفيف</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://wa.me/966597370084?text=مرحباً، أريد الاستفسار عن إنشاء حملات إعلانية على تيك توك وسناب شات" 
+                           target="_blank"
+                           class="block bg-orange-600 hover:bg-orange-700 text-white p-4 rounded-lg transition duration-300 transform hover:scale-105">
+                            <div class="flex items-center">
+                                <span class="text-2xl ml-4">📱</span>
+                                <div>
+                                    <h4 class="font-bold">الحملات الإعلانية</h4>
+                                    <p class="text-sm text-orange-200">تيك توك، سناب شات، جميع المنصات</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <div class="bg-gray-700 rounded-lg p-4">
+                            <p class="text-white font-semibold mb-2">⏰ أوقات الرد</p>
+                            <p class="text-gray-300 text-sm">من السبت إلى الخميس: 9 صباحاً - 11 مساءً</p>
+                            <p class="text-gray-300 text-sm">الجمعة: 2 ظهراً - 11 مساءً</p>
+                            <p class="text-green-400 text-sm font-semibold mt-2">✅ رد سريع مضمون خلال 30 دقيقة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-lg mb-4 animate-pulse-slow">م / مصطفى منصور</p>
+            <p class="text-gray-400">
+                أشكركم على تخصيص وقتكم لقراءة البورتفوليو الخاص بي، وأتطلع للعمل معكم لتحقيق أهدافكم التجارية
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animated counter for statistics
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stats-counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = Math.floor(current);
+                }, 20);
+            });
+        }
+
+        // Animate skill bars
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        }
+
+        // Add scroll animation to cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Trigger animations for specific sections
+                    if (entry.target.querySelector('.stats-counter')) {
+                        animateCounters();
+                    }
+                    if (entry.target.querySelector('.skill-progress')) {
+                        animateSkillBars();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.card-hover, section').forEach(element => {
+            if (element.classList.contains('card-hover')) {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            }
+            observer.observe(element);
+        });
+
+        // Portfolio item hover effects
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05) rotateY(5deg)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotateY(0deg)';
+            });
+        });
+
+        // Add floating animation to service icons
+        document.querySelectorAll('.service-icon').forEach((icon, index) => {
+            icon.style.animationDelay = `${index * 0.2}s`;
+            icon.classList.add('animate-bounce-slow');
+        });
+
+
+
+        // Dropdown functionality - Fixed version
+        document.addEventListener('DOMContentLoaded', function() {
+            const servicesBtn = document.getElementById('services-btn');
+            const servicesDropdown = document.getElementById('services-dropdown');
+            const servicesArrow = document.getElementById('services-arrow');
+
+
+            // Services dropdown
+            if (servicesBtn && servicesDropdown && servicesArrow) {
+                servicesBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleDropdown(servicesDropdown, servicesArrow);
+
+                });
+            }
+
+
+
+            function toggleDropdown(dropdown, arrow) {
+                if (!dropdown || !arrow) return;
+                
+                const isVisible = dropdown.classList.contains('opacity-100');
+                if (isVisible) {
+                    closeDropdown(dropdown, arrow);
+                } else {
+                    openDropdown(dropdown, arrow);
+                }
+            }
+
+            function openDropdown(dropdown, arrow) {
+                if (!dropdown || !arrow) return;
+                
+                dropdown.style.display = 'block';
+                dropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+                dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+                arrow.style.transform = 'rotate(180deg)';
+            }
+
+            function closeDropdown(dropdown, arrow) {
+                if (!dropdown || !arrow) return;
+                
+                dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                dropdown.classList.add('opacity-0', 'invisible', 'translate-y-2');
+                arrow.style.transform = 'rotate(0deg)';
+                
+                setTimeout(() => {
+                    dropdown.style.display = 'none';
+                }, 300);
+            }
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#services-btn') && !e.target.closest('#services-dropdown')) {
+                    closeDropdown(servicesDropdown, servicesArrow);
+                }
+            });
+
+            // Close dropdowns when clicking on dropdown links
+            if (servicesDropdown) {
+                servicesDropdown.addEventListener('click', (e) => {
+                    if (e.target.tagName === 'A') {
+                        closeDropdown(servicesDropdown, servicesArrow);
+                    }
+                });
+            }
+
+
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+
+
+        // Add parallax effect to header
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.getElementById('home');
+            if (header) {
+                header.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add mouse movement effect to cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            });
+        });
+
+        // Add dynamic particle generation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            
+            const particlesContainer = document.querySelector('.particles');
+            if (particlesContainer) {
+                particlesContainer.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 8000);
+            }
+        }
+
+        // Generate particles periodically
+        setInterval(createParticle, 2000);
+
+        // Add smooth reveal animation for sections
+        const revealElements = document.querySelectorAll('section, .card-hover');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animate-slide-up');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            revealObserver.observe(element);
+        });
+
+        // Add typing effect to main title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect
+        window.addEventListener('load', () => {
+            const mainTitle = document.querySelector('h1');
+            if (mainTitle) {
+                const originalText = mainTitle.textContent;
+                setTimeout(() => {
+                    typeWriter(mainTitle, originalText, 150);
+                }, 1000);
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'962b7f87a16c7226',t:'MTc1MzEwOTI5NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
